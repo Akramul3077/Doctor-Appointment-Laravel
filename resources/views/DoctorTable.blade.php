@@ -30,6 +30,12 @@
             font-size: 18px;
             margin-left: 10px;
         }
+
+    </style>
+
+
+
+
     </style>
 
 </head>
@@ -101,14 +107,9 @@
                             <td class="d-flex justify-content-center"><a href="{{ url('/edit',$doctor->id) }}"><i class="fa fa-edit fa-lg"></i></a> <a href="{{ url('/delete',$doctor->id) }}"><i class="fa fa-solid fa-trash fa-lg text-danger ml-2 ps-2"></i></a></td>
                         </tr>
                         @endforeach
-
-
-                       
-
-                        
                     </tbody>
                 </table>
-                
+                {{ $doctors->links() }}
             </div>
         </div>
     </div>

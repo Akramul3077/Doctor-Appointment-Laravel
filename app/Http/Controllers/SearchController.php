@@ -8,7 +8,7 @@ use App\Models\Appointments;
 use App\Models\Doctor;
 use DB;
 
-class DoctorAppointmentController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,37 @@ class DoctorAppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
+    {
+        
         $doctorAppointments = DB::table('appointments')
             ->join('doctors', 'appointments.doctor_id', '=', 'doctors.id')
             ->select('appointments.*', 'doctors.name')
             ->orderBy('id','DESC')
             ->paginate(10);
-        return view('DoctorAppointment',['doctorAppointments'=>$doctorAppointments]);
+
+
+
+        $search =$request['search']?? "";
+        if($search !=""){
+            $doctorAppointments = DB::table('appointments')
+            ->join('doctors', 'appointments.doctor_id', '=', 'doctors.id')
+            ->select('appointments.*', 'doctors.name')
+            ->Where('appointment_no','LIKE',"%$search%")
+            ->orWhere('appointment_date','LIKE',"$search")
+            ->orWhere('doctors.name','LIKE',"%$search%")
+            ->orWhere('patient_name','LIKE',"%$search%")
+            ->orWhere('patient_phone','LIKE',"$search")
+            ->orderBy('id','DESC')
+            ->paginate(10);
+        }else{
+
+             return view('DoctorAppointment',['doctorAppointments'=>$doctorAppointments]);
+        }
+        
+        
+        $data =compact('search','doctorAppointments');
+        return view('DoctorAppointment')->with($data);
+
 
     }
 

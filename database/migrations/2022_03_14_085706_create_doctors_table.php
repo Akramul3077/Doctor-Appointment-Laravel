@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('department_id') ;
             $table->string('name');
-            $table->bigInteger('phone')->unique();
+            $table->string('phone');
             $table->bigInteger('fee');
             $table->timestamps();
         });

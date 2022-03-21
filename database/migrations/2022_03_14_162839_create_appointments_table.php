@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('appointment_date');
             $table->bigInteger('doctor_id');
             $table->string('patient_name');
-            $table->bigInteger('patient_phone');
+            $table->string('patient_phone');
             $table->bigInteger('total_fee');
             $table->bigInteger('paid_amount');
             $table->timestamps();

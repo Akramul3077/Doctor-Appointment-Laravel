@@ -6,6 +6,8 @@ use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\DoctorTableController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\EditDoctorController;
+use App\Http\Controllers\SearchController;
+
 
 
 /*
@@ -22,6 +24,8 @@ use App\Http\Controllers\EditDoctorController;
 
 
 Route::get('/',[DoctorAppointmentController::class,'index'])->name('index');
+// Route::get('/',[DoctorAppointmentController::class,'view'])->name('view');
+Route::get('/search',[SearchController::class,'index'])->name('search');
 
 Route::get('/doctor',[DoctorTableController::class,'index'])->name('doctor');
 
@@ -36,3 +40,13 @@ Route::put('/edit/{id}',[DoctorController::class,'update'])->name('update');
 Route::get('/delete/{id}',[DoctorController::class,'destroy'])->name('destroy');
 
 Route::get('/appointment',[AppointmentController::class,'index'])->name('appointment');
+
+Route::get('/appointment/getDoctors/{id}',[AppointmentController::class,'getDoctors']);
+
+Route::get('/appointment/getFee/{id}',[AppointmentController::class,'getFee']);
+
+// Route::post('/appointment/submit',[AppointmentController::class,'submit']);
+
+Route::get('/save-data/{appointment_no}/{appointment_date}/{doctor_id}/{patient_name}/{patient_phone}/{total_fee}/{paid_amount}',[AppointmentController::class,'saveData']);
+
+

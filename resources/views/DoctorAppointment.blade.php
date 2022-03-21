@@ -68,16 +68,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <h4 >Appointment List</h4>
                     </div>
-                    <div  class="col-md-4">
-                      <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <div  class="col-md-6">
+                      <form action="{{ route('search') }}" class="d-flex">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search ">
+                        <button class="btn btn-outline-success" type="submit" >Search</button>
                       </form>
                     </div>
-                    
                 </div>
             </div>
             <div class="panel-body">
@@ -94,96 +93,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                         <td>11</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>10</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>9</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>8</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>7</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>6</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>5</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>4</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>3</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                      <tr>
-                         <td>2</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-
-                       <tr>
-                         <td>1</td>
-                         <td>15-03-2022</td>
-                         <td>Doctor Naim</td>
-                         <td>Md. Habibur Rahaman</td>
-                         <td>017123456789</td>
-                       </tr>
-                        
+                      @foreach ($doctorAppointments as $appointment)
+                            <tr>
+                              <td>{{ $appointment->id }}</td>
+                              <td>{{ $appointment->appointment_date }}</td>
+                              <td>{{ $appointment->name }}</td>
+                              <td>{{ $appointment->patient_name }}</td>
+                              <td>{{ $appointment->patient_phone }}</td>
+                            </tr>
+                      @endforeach
                     </tbody>
                 </table>
+                {{ $doctorAppointments->links() }}
             </div>
         </div>
     </div>

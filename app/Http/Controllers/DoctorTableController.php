@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DoctorTable;
 use App\Models\Doctor;
+use DB;
 
 
 
@@ -17,7 +18,13 @@ class DoctorTableController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::all();
+        // $doctors = Doctor::paginate(10);
+
+        $doctors =DB::table('doctors')
+        ->orderBy('id','DESC')
+        ->paginate(10);
+
+
         return view('DoctorTable',['doctors'=>$doctors]);
     }
 

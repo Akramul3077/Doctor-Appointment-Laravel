@@ -373,19 +373,26 @@
 
         // alert(appointment_no+" "+appointment_date+" "+doctor_id+" "+patient_name+" "+patient_phone+" "+total_fee+" "+paid_amount);
 
-        var req =new XMLHttpRequest();
+        if(total_fee==paid_amount){
+            var req =new XMLHttpRequest();
 
-        req.open("GET","/save-data/"+appointment_no+"/"+appointment_date+"/"+doctor_id+"/"+patient_name+"/"+patient_phone+"/"+total_fee+"/"+paid_amount,true);
-        req.send();
+            req.open("GET","/save-data/"+appointment_no+"/"+appointment_date+"/"+doctor_id+"/"+patient_name+"/"+patient_phone+"/"+total_fee+"/"+paid_amount,true);
+            req.send();
 
-        req.onreadystatechange =function(){
-            if(req.readyState == 4 && req.status ==200){
-                var obj =JSON.parse(req.responseText);
+            req.onreadystatechange =function(){
+                if(req.readyState == 4 && req.status ==200){
+                    var obj =JSON.parse(req.responseText);
 
-                window.location.reload();
-                alert("Submit Successfully !!!");
-            }
-        };
+                    window.location.reload();
+                    alert("Submit Successfully !!!");
+                }
+            };
+        }else{
+            alert('Please Enter a Valid Amount.');
+        }
+
+
+        
 
 
 

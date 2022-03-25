@@ -41,10 +41,23 @@ class AppointmentController extends Controller
     function getFee()
     {
         $id = $_GET['myID'];
-        $res = DB::table('doctors')
-        ->where('doctors.id', $id)
-        ->get();
+        $date =$_GET['myDate'];
+        
+        $count = DB::table('appointments')
+        ->where('doctor_id',$id)
+        ->where('appointment_date',$date)
+        ->count();
 
+        if($count < 2) {
+            $res = DB::table('doctors')
+            ->where('doctors.id', $id)
+            ->get();
+       }else {
+            $res=$count;
+       }
+
+
+        
         return Response::json($res);
     }
 

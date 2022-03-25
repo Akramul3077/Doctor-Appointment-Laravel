@@ -250,7 +250,9 @@
     $(document).ready(function(){
         $('#departments_id').change(function(){
            var dept_id = $('#departments_id').val();
+           
            $('#doctors_id').html('');
+
             $.ajax({
               url:'/appointment/getDoctors/{id}',
               type:'GET',
@@ -283,21 +285,32 @@
     $(document).ready(function(){
         $('#doctors_id').change(function(){
            var doct_id = $('#doctors_id').val();
+           var date_id_date =$('#date_id').val();
+        //    alert(date_id_date);
+
            $('#fee_id').html('');
             $.ajax({
               url:'/appointment/getFee/{id}',
               type:'GET',
-              data:{myID:doct_id},
+              data:{myID:doct_id,myDate:date_id_date},
               dataType: "json",
               success:function(data)
               {
-                $.each(data, function(key, doctors)
-                 {     
-                  $('#fee_id').prop('disabled', false);
-                  $('#Available').show();
-                  $('#fee_id').val(doctors.fee);
-                  $('#add_id').prop('disabled', false);
-                });
+                //   alert(data);
+                  if(data == 2){
+                    $('#NotAvailable').show();
+                    $('#Available').hide();
+                  }else{
+                    $.each(data, function(key, doctors)
+                    {
+                    $('#NotAvailable').hide(); 
+                    $('#Available').show();  
+                    $('#fee_id').prop('disabled', false);
+                    $('#fee_id').val(doctors.fee);
+                    $('#add_id').prop('disabled', false);
+                    });
+                  }
+
               }
           });
         });

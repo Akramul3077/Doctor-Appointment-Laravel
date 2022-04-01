@@ -112,7 +112,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="panel-footer" style="position:relative; margin-top: 95px;">
+                        <div class="panel-footer" style="position:relative; margin-top: 150px;">
                             <div class="panel-body bg-white  ">
                                 <div class="panel panel-default">
                                     <div class="panel-body ">
